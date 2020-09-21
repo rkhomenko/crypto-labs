@@ -6,7 +6,10 @@ plugins {
 
 javafx {
     version = "14"
-    modules = listOf("javafx.controls")
+    modules = listOf(
+            "javafx.controls",
+            "javafx.fxml"
+    )
 }
 
 group = "org.khomenko.crypto.labs.ui"
@@ -18,4 +21,17 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+}
+
+application {
+    mainClass.set("org.khomenko.crypto.labs.ui.main.ApplicationKt")
+}
+
+val jar by tasks.getting(Jar::class) {
+    manifest {
+        attributes["Main-Class"] = "org.khomenko.crypto.labs.ui.main.ApplicationKt"
+    }
+
+    from(configurations.compileClasspath.get().files
+            .map { if (it.isDirectory) it else zipTree(it) })
 }
