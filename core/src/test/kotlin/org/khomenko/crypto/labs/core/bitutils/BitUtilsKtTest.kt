@@ -2,23 +2,38 @@ package org.khomenko.crypto.labs.core.bitutils
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.khomenko.crypto.labs.core.ext.toBinUInt
 
 @ExperimentalUnsignedTypes
 internal class BitUtilsKtTest {
-    private val radix = 2
-    private val a = "1110101000".toUInt(radix)
+    private val a = "1110101000".toBinUInt()
+    private val b = "11111000000000001000000000010101".toBinUInt()
 
     @Test
     fun multipleSwapBitsTest() {
-        val expected = "101111".toUInt(radix)
+        val expected = "101111".toBinUInt()
         val result = swapBits(a, 0, 7, 3)
         assertEquals(expected, result)
     }
 
     @Test
     fun singleSwapBitsTest() {
-        val expected = "1010101001".toUInt(radix)
+        val expected = "1010101001".toBinUInt()
         val result = swapBits(a, 0, 8)
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun concatFirstLastBitsTest() {
+        val expected = "1111110101".toBinUInt()
+        val result = concatFirstLastBits(b, 5)
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun extractBetweenFirstLastBits() {
+        val expected = "10000000000".toBinUInt()
+        val result = extractBetweenFirstLastBits(b, 5)
         assertEquals(expected, result)
     }
 }
