@@ -36,13 +36,6 @@ fun xorAllBits(a: UInt): UByte {
     return result.toUByte()
 }
 
-//@ExperimentalUnsignedTypes
-//infix fun UInt.cshl(n: UInt): UInt {
-//    val mask: UInt = (UByte.SIZE_BITS * UInt.SIZE_BYTES).toUInt() - 1u;
-//    val count = n and mask
-//    return (this shl count.toInt()) or (this shr ((UInt.MAX_VALUE - count).toInt()) and mask)
-//}
-
 @ExperimentalUnsignedTypes
 infix fun UInt.cshl(n: Int): UInt {
     return (this shl n) or (this shr (UInt.SIZE_BITS - n))
