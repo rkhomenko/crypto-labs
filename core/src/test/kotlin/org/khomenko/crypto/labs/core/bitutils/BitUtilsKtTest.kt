@@ -53,4 +53,16 @@ internal class BitUtilsKtTest {
         val a = "11100111".toBinUInt()
         assertEquals(xorAllBits(a), 0.toUByte())
     }
+
+    @Test
+    fun circularLeftShiftTest() {
+        val expected = "10000000000101011111100000000000".toBinUInt()
+        assertEquals(expected, b cshl 16)
+    }
+
+    @Test
+    fun circularRightShiftTest() {
+        val expected = "10000000000101011111100000000000".toBinUInt()
+        assertEquals(expected, b cshr 16)
+    }
 }
