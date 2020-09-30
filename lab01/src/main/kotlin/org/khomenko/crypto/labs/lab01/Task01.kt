@@ -1,31 +1,7 @@
 package org.khomenko.crypto.labs.lab01
 
-import kotlin.system.exitProcess
-
-fun <T> readUntil(chances: Int, reader: () -> T): T {
-    var value: T? = null
-    for (i in 1..chances) {
-        try {
-            value = reader()
-            break
-        } catch (e: NumberFormatException) {
-            println("Bad format. Try again:")
-        }
-    }
-
-    if (value == null) {
-        println("Cannot read a number. Exiting...")
-        exitProcess(1)
-    }
-
-    return value
-}
-
-@ExperimentalUnsignedTypes
-fun swapBits(a: UInt, i: Int, j: Int, n: Int): UInt {
-    val xorResult = ((a shr i) xor (a shr j)) and ((1u shl n) - 1u)
-    return a xor ((xorResult shl i) or (xorResult shl j))
-}
+import org.khomenko.crypto.labs.core.bitutils.swapBits
+import org.khomenko.crypto.labs.core.io.readUntil;
 
 @ExperimentalUnsignedTypes
 fun main() {
@@ -49,7 +25,7 @@ fun main() {
     val i = readUntil(chances, intReader)
     val j = readUntil(chances, intReader)
 
-    a = swapBits(a, i, j, 1)
+    a = swapBits(a, i, j)
     println("Swap i and j-th bits of a: ${a.toString(radix)}")
 
     println("Enter number of bits (m):")
