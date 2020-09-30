@@ -1,6 +1,11 @@
 package org.khomenko.crypto.labs.core.bitutils
 
 @ExperimentalUnsignedTypes
+fun getBit(a: UInt, i: Int): UByte {
+    return ((a shr i) and 1u).toUByte()
+}
+
+@ExperimentalUnsignedTypes
 fun swapBits(a: UInt, i: Int, j: Int, n: Int = 1): UInt {
     val xorResult = ((a shr i) xor (a shr j)) and ((1u shl n) - 1u)
     return a xor ((xorResult shl i) or (xorResult shl j))
@@ -16,4 +21,17 @@ fun concatFirstLastBits(a: UInt, i: Int): UInt {
 fun extractBetweenFirstLastBits(a: UInt, i: Int): UInt {
     val n = UInt.SIZE_BITS
     return (a shl i) shr (2 * i)
+}
+
+@ExperimentalUnsignedTypes
+fun xorAllBits(a: UInt): UByte {
+    var result: UInt = 0u
+    var tmp = a
+
+    while (tmp > 0u) {
+        result = result xor (tmp and 1u)
+        tmp = tmp shr 1
+    }
+
+    return result.toUByte()
 }

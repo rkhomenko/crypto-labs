@@ -1,5 +1,6 @@
 package org.khomenko.crypto.labs.lab01
 
+import org.khomenko.crypto.labs.core.bitutils.getBit
 import org.khomenko.crypto.labs.core.bitutils.swapBits
 import org.khomenko.crypto.labs.core.ext.toBinUInt
 import org.khomenko.crypto.labs.core.io.readUntil
@@ -15,7 +16,7 @@ fun main() {
     println("Enter a number of bit (k) in the number (a):")
     val k = readUntil(chances, String::toInt)
 
-    println("k-th bit is: ${(a shr k) and 1u}")
+    println("k-th bit is: ${getBit(a, k)}")
 
     a = a xor (1u shl k)
     println("Toggle k-th bit: ${a.toString(radix)}")

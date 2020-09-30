@@ -10,6 +10,11 @@ internal class BitUtilsKtTest {
     private val b = "11111000000000001000000000010101".toBinUInt()
 
     @Test
+    fun getBitTest() {
+        assertEquals(getBit(b, 15), 1.toUByte())
+    }
+
+    @Test
     fun multipleSwapBitsTest() {
         val expected = "101111".toBinUInt()
         val result = swapBits(a, 0, 7, 3)
@@ -35,5 +40,17 @@ internal class BitUtilsKtTest {
         val expected = "10000000000".toBinUInt()
         val result = extractBetweenFirstLastBits(b, 5)
         assertEquals(expected, result)
+    }
+
+    @Test
+    fun xorAllBitsTest1() {
+        val a = "101110001".toBinUInt()
+        assertEquals(xorAllBits(a), 1.toUByte())
+    }
+
+    @Test
+    fun xorAllBitsTest2() {
+        val a = "11100111".toBinUInt()
+        assertEquals(xorAllBits(a), 0.toUByte())
     }
 }
