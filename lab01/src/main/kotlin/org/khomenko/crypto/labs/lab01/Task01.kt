@@ -1,5 +1,7 @@
 package org.khomenko.crypto.labs.lab01
 
+import kotlin.system.exitProcess
+
 fun <T> readUntil(chances: Int, reader: () -> T): T {
     var value: T? = null
     for (i in 1..chances) {
@@ -13,10 +15,10 @@ fun <T> readUntil(chances: Int, reader: () -> T): T {
 
     if (value == null) {
         println("Cannot read a number. Exiting...")
-        System.exit(1)
+        exitProcess(1)
     }
 
-    return value!!
+    return value
 }
 
 @ExperimentalUnsignedTypes
