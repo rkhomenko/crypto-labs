@@ -2,12 +2,12 @@ package org.khomenko.crypto.labs.lab01
 
 import org.khomenko.crypto.labs.core.bitutils.getBit
 import org.khomenko.crypto.labs.core.bitutils.swapBits
+import org.khomenko.crypto.labs.core.ext.toBinString
 import org.khomenko.crypto.labs.core.ext.toBinUInt
 import org.khomenko.crypto.labs.core.io.readUntil
 
 @ExperimentalUnsignedTypes
 fun main() {
-    val radix = 2
     val chances = 3
 
     println("Enter a number in binary format (a):")
@@ -19,17 +19,17 @@ fun main() {
     println("k-th bit is: ${getBit(a, k)}")
 
     a = a xor (1u shl k)
-    println("Toggle k-th bit: ${a.toString(radix)}")
+    println("Toggle k-th bit: ${a.toBinString()}")
 
     println("Enter i and j line by line:")
     val i = readUntil(chances, String::toInt)
     val j = readUntil(chances, String::toInt)
 
     a = swapBits(a, i, j)
-    println("Swap i and j-th bits of a: ${a.toString(radix)}")
+    println("Swap i and j-th bits of a: ${a.toBinString()}")
 
     println("Enter number of bits (m):")
     val m = readUntil(chances, String::toInt)
     a = (a shr m) shl m
-    println("Unset m first bits of a: ${a.toString(radix)}")
+    println("Unset m first bits of a: ${a.toBinString()}")
 }

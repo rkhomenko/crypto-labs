@@ -6,8 +6,8 @@ import org.khomenko.crypto.labs.core.ext.toBinUInt
 
 @ExperimentalUnsignedTypes
 internal class BitUtilsKtTest {
-    private val a = "1110101000".toBinUInt()
-    private val b = "11111000000000001000000000010101".toBinUInt()
+    private val a: UInt = 0b1110101000u
+    private val b: UInt = 0b11111000000000001000000000010101u
 
     @Test
     fun getBitTest() {
@@ -16,14 +16,14 @@ internal class BitUtilsKtTest {
 
     @Test
     fun multipleSwapBitsTest() {
-        val expected = "101111".toBinUInt()
+        val expected = 0b101111u
         val result = swapBits(a, 0, 7, 3)
         assertEquals(expected, result)
     }
 
     @Test
     fun singleSwapBitsTest() {
-        val expected = "1010101001".toBinUInt()
+        val expected = 0b1010101001u
         val result = swapBits(a, 0, 8)
         assertEquals(expected, result)
     }
@@ -37,32 +37,32 @@ internal class BitUtilsKtTest {
 
     @Test
     fun extractBetweenFirstLastBits() {
-        val expected = "10000000000".toBinUInt()
+        val expected = 0b10000000000u
         val result = extractBetweenFirstLastBits(b, 5)
         assertEquals(expected, result)
     }
 
     @Test
     fun xorAllBitsTest1() {
-        val a = "101110001".toBinUInt()
+        val a = 0b101110001u
         assertEquals(xorAllBits(a), 1.toUByte())
     }
 
     @Test
     fun xorAllBitsTest2() {
-        val a = "11100111".toBinUInt()
+        val a = 0b11100111u
         assertEquals(xorAllBits(a), 0.toUByte())
     }
 
     @Test
     fun circularLeftShiftTest() {
-        val expected = "10000000000101011111100000000000".toBinUInt()
+        val expected = 0b10000000000101011111100000000000u
         assertEquals(expected, b cshl 16)
     }
 
     @Test
     fun circularRightShiftTest() {
-        val expected = "10000000000101011111100000000000".toBinUInt()
+        val expected = 0b10000000000101011111100000000000u
         assertEquals(expected, b cshr 16)
     }
 }
