@@ -30,7 +30,7 @@ internal class BitUtilsKtTest {
 
     @Test
     fun concatFirstLastBitsTest() {
-        val expected = "1111110101".toBinUInt()
+        val expected = 0b1111110101u
         val result = concatFirstLastBits(b, 5)
         assertEquals(expected, result)
     }
