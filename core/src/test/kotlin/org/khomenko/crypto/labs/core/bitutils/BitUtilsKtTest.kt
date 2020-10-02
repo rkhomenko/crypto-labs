@@ -2,7 +2,6 @@ package org.khomenko.crypto.labs.core.bitutils
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.khomenko.crypto.labs.core.ext.toBinUInt
 
 @ExperimentalUnsignedTypes
 internal class BitUtilsKtTest {
