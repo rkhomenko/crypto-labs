@@ -36,3 +36,17 @@ fun eratosthenesSieve(n: Int): List<Int> {
             .filter { it != mark }
             .collect(Collectors.toList())
 }
+
+fun greatestCommonDivisor(a: Int, b: Int): Int {
+    var x = a
+    var y = b
+
+    while (y != 0) {
+        x %= y
+
+        val t = y
+        y = x
+        x = t
+    }
+    return x
+}
