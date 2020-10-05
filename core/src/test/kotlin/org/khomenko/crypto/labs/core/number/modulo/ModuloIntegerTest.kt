@@ -43,6 +43,28 @@ internal class ModuloIntegerTest {
     }
 
     @Test
+    fun multiplicationTest() {
+        val a = ModuloInteger.of(3, 5)
+        val b = ModuloInteger.of(2, 5)
+        val c = a * b
+        val d = b * a
+        val expected = ModuloInteger.of(1, 5)
+
+        assertAll(
+                { assertEquals(expected, c) },
+                { assertEquals(expected, d) }
+        )
+    }
+
+    @Test
+    fun divisionTest() {
+        val a = ModuloInteger.of(4, 5)
+        val b = ModuloInteger.of(2, 5)
+        val expected = ModuloInteger.of(2, 5)
+        assertEquals(a / b, expected)
+    }
+
+    @Test
     fun powerTest() {
         val a = ModuloInteger.of(2, 2389)
         val b = ModuloInteger.of(2, 67)

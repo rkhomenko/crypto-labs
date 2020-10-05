@@ -1,6 +1,7 @@
 package org.khomenko.crypto.labs.core.number.modulo
 
-class ModuloInteger private constructor(val value: Int, val n: Int) {
+data class ModuloInteger private constructor(val value: Int,
+                                             val n: Int) {
     companion object {
         fun of(value: Int, n: Int): ModuloInteger {
             return ModuloInteger(value % n, n)
