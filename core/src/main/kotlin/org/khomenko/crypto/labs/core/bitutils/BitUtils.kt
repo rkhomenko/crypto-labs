@@ -19,7 +19,6 @@ fun concatFirstLastBits(a: UInt, i: Int): UInt {
 
 @ExperimentalUnsignedTypes
 fun extractBetweenFirstLastBits(a: UInt, i: Int): UInt {
-    val n = UInt.SIZE_BITS
     return (a shl i) shr (2 * i)
 }
 

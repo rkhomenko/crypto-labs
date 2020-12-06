@@ -44,7 +44,7 @@ data class ModuloInteger private constructor(val value: Int,
     }
 
     infix fun `**`(pow: Int): ModuloInteger {
-        when(pow) {
+        when (pow) {
             0 -> {
                 if (value == 0) {
                     throw ArithmeticException("0^0 undefined")
@@ -55,8 +55,8 @@ data class ModuloInteger private constructor(val value: Int,
         }
 
         var z = pow
-        var a = value
-        var res = 1
+        var a = of(value, n)
+        var res = of(1, n)
         while (z > 0) {
             if (z and 1 > 0) {
                 res *= a
@@ -67,6 +67,6 @@ data class ModuloInteger private constructor(val value: Int,
             z = z shr 1
         }
 
-        return of(res, n)
+        return res
     }
 }
