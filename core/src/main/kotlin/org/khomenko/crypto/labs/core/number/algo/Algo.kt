@@ -51,6 +51,33 @@ fun greatestCommonDivisor(a: Int, b: Int): Int {
     return x
 }
 
+/**
+ * @return GCD(a, b), x and y: a * x + b * y = GCD(a, b)
+ */
+fun greatestCommonDivisorExt(a: Int, b: Int): Triple<Int, Int, Int> {
+    if (a == 0) {
+        return Triple(b, 0, 1)
+    }
+
+    var coeffs1 = Pair(0, 1)
+    var coeffs2 = Pair(1, 0)
+
+    var a = a
+    var b = b
+    while (a != 0) {
+        val k = b / a
+        val tmp0 = Pair(b % a, a)
+        a = tmp0.first
+        b = tmp0.second
+
+        val tmp1 = coeffs2
+        coeffs2 = Pair(coeffs1.first - k * coeffs2.first, coeffs1.second - k * coeffs2.second)
+        coeffs1 = tmp1
+    }
+
+    return Triple(b, coeffs1.first, coeffs1.second)
+}
+
 fun phi(n: Int): Int {
     var n = n
     var result = n
