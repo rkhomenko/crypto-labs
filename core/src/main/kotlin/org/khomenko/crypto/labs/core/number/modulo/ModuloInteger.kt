@@ -1,9 +1,9 @@
 package org.khomenko.crypto.labs.core.number.modulo
 
-data class ModuloInteger private constructor(val value: Int,
-                                             val n: Int) {
+data class ModuloInteger private constructor(val value: Long,
+                                             val n: Long) {
     companion object {
-        fun of(value: Int, n: Int): ModuloInteger {
+        fun of(value: Long, n: Long): ModuloInteger {
             return ModuloInteger(value % n, n)
         }
 
@@ -37,21 +37,21 @@ data class ModuloInteger private constructor(val value: Int,
     }
 
     operator fun div(b: ModuloInteger): ModuloInteger {
-        if (b.value == 0) {
+        if (b.value == 0L) {
             throw ArithmeticException("Division by zero")
         }
         return of((value / b.value) % n, n)
     }
 
-    infix fun `**`(pow: Int): ModuloInteger {
+    infix fun `**`(pow: Long): ModuloInteger {
         when (pow) {
-            0 -> {
-                if (value == 0) {
+            0L -> {
+                if (value == 0L) {
                     throw ArithmeticException("0^0 undefined")
                 }
                 return of(1, n)
             }
-            1 -> return this
+            1L -> return this
         }
 
         var z = pow

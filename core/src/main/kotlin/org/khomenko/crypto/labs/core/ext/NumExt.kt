@@ -9,3 +9,7 @@ fun UInt.toBinString(): String {
 fun ULong.toBinString(): String {
     return this.toString(2)
 }
+
+fun Long.toHexString(): String {
+    return this.toString(16)
+}

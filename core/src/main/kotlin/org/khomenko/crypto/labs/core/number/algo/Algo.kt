@@ -1,6 +1,7 @@
 package org.khomenko.crypto.labs.core.number.algo
 
 import java.util.stream.Collectors
+import kotlin.math.sqrt
 
 fun eratosthenesSieve(n: Int): List<Int> {
     val mark = -1
@@ -37,11 +38,25 @@ fun eratosthenesSieve(n: Int): List<Int> {
             .collect(Collectors.toList())
 }
 
-fun greatestCommonDivisor(a: Int, b: Int): Int {
+@ExperimentalUnsignedTypes
+fun fermatPrimalityTest(n: Long): Boolean {
+    if (n <= 1L) {
+        return false
+    }
+
+    for (i in 2L..sqrt(n.toDouble()).toLong()) {
+        if (n % i == 0L) {
+            return false
+        }
+    }
+    return true
+}
+
+fun greatestCommonDivisor(a: Long, b: Long): Long {
     var x = a
     var y = b
 
-    while (y != 0) {
+    while (y != 0L) {
         x %= y
 
         val t = y
@@ -54,17 +69,17 @@ fun greatestCommonDivisor(a: Int, b: Int): Int {
 /**
  * @return GCD(a, b), x and y: a * x + b * y = GCD(a, b)
  */
-fun greatestCommonDivisorExt(a: Int, b: Int): Triple<Int, Int, Int> {
-    if (a == 0) {
-        return Triple(b, 0, 1)
+fun greatestCommonDivisorExt(a: Long, b: Long): Triple<Long, Long, Long> {
+    if (a == 0L) {
+        return Triple(b, 0L, 1L)
     }
 
-    var coeffs1 = Pair(0, 1)
-    var coeffs2 = Pair(1, 0)
+    var coeffs1 = Pair(0L, 1L)
+    var coeffs2 = Pair(1L, 0L)
 
     var a = a
     var b = b
-    while (a != 0) {
+    while (a != 0L) {
         val k = b / a
         val tmp0 = Pair(b % a, a)
         a = tmp0.first
