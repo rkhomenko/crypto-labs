@@ -10,3 +10,12 @@ fun String.toBinUInt(): UInt {
 fun String.toBinULong(): ULong {
     return this.toULong(2)
 }
+
+@ExperimentalUnsignedTypes
+fun String.toBinUByte(): UByte {
+    return this.toUByte(2)
+}
+
+fun String.toBinByte(): Byte {
+    return this.toByte(2)
+}
