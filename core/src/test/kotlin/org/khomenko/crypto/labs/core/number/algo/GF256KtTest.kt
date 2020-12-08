@@ -2,7 +2,6 @@ package org.khomenko.crypto.labs.core.number.algo
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import kotlin.math.abs
 
 @ExperimentalUnsignedTypes
 class GF256KtTest {

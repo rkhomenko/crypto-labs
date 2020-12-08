@@ -55,7 +55,10 @@ class GF256 private constructor(val m: UShort) {
             if (getBit(a.toUInt(), 0).toInt() != 0) {
                 stack.push("1")
             }
-            for (i in 1..maxBits) {
+            if (getBit(a.toUInt(), 1).toInt() != 0) {
+                stack.push("x")
+            }
+            for (i in 2..maxBits) {
                 val ai = getBit(a.toUInt(), i).toInt()
                 if (ai != 0) {
                     stack.push("x^${i}")
