@@ -2,8 +2,6 @@ package org.khomenko.crypto.labs.core.number.algo
 
 import org.khomenko.crypto.labs.core.bitutils.getBit
 import java.lang.ArithmeticException
-import java.util.Stack
-import kotlin.experimental.xor
 
 @ExperimentalUnsignedTypes
 class GF256 private constructor(val m: UShort) {
@@ -50,22 +48,21 @@ class GF256 private constructor(val m: UShort) {
 
         @ExperimentalUnsignedTypes
         override fun toString(): String {
-            val stack = Stack<String>()
-
-            if (getBit(a.toUInt(), 0).toInt() != 0) {
-                stack.push("1")
-            }
-            if (getBit(a.toUInt(), 1).toInt() != 0) {
-                stack.push("x")
-            }
-            for (i in 2..maxBits) {
+            val list = mutableListOf<String>()
+            for (i in maxBits downTo 2) {
                 val ai = getBit(a.toUInt(), i).toInt()
                 if (ai != 0) {
-                    stack.push("x^${i}")
+                    list += "x^${i}"
                 }
             }
+            if (getBit(a.toUInt(), 1).toInt() != 0) {
+                list += "x"
+            }
+            if (getBit(a.toUInt(), 0).toInt() != 0) {
+                list += "1"
+            }
 
-            return stack.joinToString(separator = " + ")
+            return list.joinToString(separator = " + ")
         }
     }
 
